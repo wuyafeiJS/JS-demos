@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	#toTop{
+		width: 50px;
+		height: 50px;
+		background: #0ff;
+		position: fixed;
+		right: 50px;
+		bottom:50px;
+	}
+	#toTop:hover{
+		background: #ff0;
+	}
+</style>
+<body>
+	<div>
+		<img src="index.png" alt="">
+	</div>
+	<div style="display:none" id="toTop"></div>
+	<script>
+	var toTop = document.getElementById("toTop");
+	var timer = null;
+	window.onscroll = function(){
+		var lookHeight = innerHeight;
+		var scrollHeight = document.body.scrollTop;
+		if(scrollHeight<lookHeight){
+			toTop.style.display = "none";
+		}else{
+			toTop.style.display = "block";
+		}
+	}
+	toTop.addEventListener('click',function(){
+		var scroll = document.body.scrollTop;
+		timer = setInterval(function(){
+			console.log(scroll)
+			scroll-=scroll/5;
+			if(scroll<=1){
+				clearInterval(timer)
+			}
+			document.body.scrollTop = scroll;
+		},30)
+	})
+	</script>
+</body>
+</html>
